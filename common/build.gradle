@@ -1,11 +1,7 @@
-plugins {
-    id 'org.jetbrains.kotlin.jvm'
-}
 dependencies {
     // We depend on fabric loader here to use the fabric @Environment annotations
     // Do NOT use other classes from fabric loader
     modImplementation libs.fabric.loader
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 configurations {
@@ -21,7 +17,4 @@ architectury {
 }
 repositories {
     mavenCentral()
-}
-kotlin {
-    jvmToolchain(17)
 }
