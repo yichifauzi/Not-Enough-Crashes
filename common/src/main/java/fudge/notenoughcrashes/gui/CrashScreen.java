@@ -48,6 +48,7 @@ public class CrashScreen extends ProblemScreen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         renderBackground(context, mouseX, mouseY, delta);
+        super.render(context, mouseX, mouseY, delta);
         context.drawCenteredTextWithShadow(textRenderer, NecLocalization.localize("notenoughcrashes.crashscreen.title"), width / 2, height / 4 - 40, 0xFFFFFF);
 
         int textColor = 0xD0D0D0;
@@ -70,7 +71,6 @@ public class CrashScreen extends ProblemScreen {
         context.drawTextWithShadow(textRenderer, NecLocalization.localize("notenoughcrashes.crashscreen.paragraph3.line3"), x, y += 9, textColor);
         context.drawTextWithShadow(textRenderer, NecLocalization.localize("notenoughcrashes.crashscreen.paragraph3.line4"), x, y + 9, textColor);
 
-        super.render(context, mouseX, mouseY, delta);
     }
 
 }

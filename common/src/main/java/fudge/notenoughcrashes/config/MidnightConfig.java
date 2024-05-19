@@ -6,6 +6,7 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.blaze3d.systems.RenderSystem;
+import fudge.notenoughcrashes.NotEnoughCrashes;
 import fudge.notenoughcrashes.platform.NecPlatform;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -320,7 +321,7 @@ public abstract class MidnightConfig {
                         info.index = 0;
                         list.clear();
                         fillList();
-                    }), true).texture(new Identifier("midnightlib","icon/reset"), 12, 12).dimension(40, 20).build();
+                    }), true).texture(new Identifier(NotEnoughCrashes.MOD_ID,"icon/reset"), 12, 12).dimension(40, 20).build();
                     resetButton.setPosition(width - 205, 0);
 
                     if (info.widget instanceof Map.Entry) {

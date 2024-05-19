@@ -183,8 +183,8 @@ public abstract class ProblemScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        for (Widget widget : widgets) widget.draw(context);
         super.render(context, mouseX, mouseY, delta);
+        for (Widget widget : widgets) widget.draw(context);
     }
 
 }

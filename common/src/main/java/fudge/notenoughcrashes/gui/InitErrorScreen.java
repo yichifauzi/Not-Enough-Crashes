@@ -5,6 +5,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.crash.CrashReport;
 
@@ -32,11 +33,13 @@ public class InitErrorScreen extends ProblemScreen {
                 }).dimensions(width / 2 - 155, height / 4 + 120 + 12, 150, 20).build();
 
         addDrawableChild(exitButton);
+
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int i, float f) {
         renderBackground(context, mouseX, i, f);
+        super.render(context, mouseX, i, f);
         context.drawCenteredTextWithShadow(textRenderer, NecLocalization.localize("notenoughcrashes.initerrorscreen.title"), width / 2, height / 4 - 40, 0xFFFFFF);
 
         context.drawTextWithShadow(textRenderer, NecLocalization.localize("notenoughcrashes.initerrorscreen.summary"), x, y, TEXT_COLOR);
@@ -53,7 +56,6 @@ public class InitErrorScreen extends ProblemScreen {
         context.drawTextWithShadow(textRenderer, NecLocalization.localize("notenoughcrashes.initerrorscreen.paragraph3.line3"), x, y + 90, TEXT_COLOR);
         context.drawTextWithShadow(textRenderer, NecLocalization.localize("notenoughcrashes.initerrorscreen.paragraph3.line4"), x, y + 99, TEXT_COLOR);
 
-        super.render(context, mouseX, i, f);
     }
 
 }
