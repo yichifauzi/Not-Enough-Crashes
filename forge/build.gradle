@@ -118,3 +118,8 @@ task publishForge {
         dependsOn(tasks.modrinth)
     }
 }
+
+// See https://discord.com/channels/792699517631594506/1237692720219295844/1250428584598962351
+configurations.all {
+    resolutionStrategy.force("net.sf.jopt-simple:jopt-simple:5.0.4")
+}
