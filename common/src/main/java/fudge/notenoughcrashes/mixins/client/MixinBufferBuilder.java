@@ -2,6 +2,9 @@ package fudge.notenoughcrashes.mixins.client;
 
 import fudge.notenoughcrashes.StateManager;
 import net.minecraft.client.render.BufferBuilder;
+import net.minecraft.client.render.BuiltBuffer;
+import net.minecraft.client.render.VertexFormat;
+import net.minecraft.client.util.BufferAllocator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,10 +16,10 @@ public abstract class MixinBufferBuilder implements StateManager.IResettable {
 
     @Shadow private boolean building;
 
-    @Shadow public abstract BufferBuilder.BuiltBuffer end();
+    @Shadow public abstract BuiltBuffer end();
 
     @Inject(method = "<init>", at = @At("RETURN"))
-    public void onInit(int bufferSizeIn, CallbackInfo ci) {
+    public void onInit(BufferAllocator allocator, VertexFormat.DrawMode drawMode, VertexFormat format, CallbackInfo ci) {
         register();
     }
 

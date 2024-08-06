@@ -18,8 +18,10 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.*;
 import net.minecraft.util.Util;
 import net.minecraft.util.crash.CrashReport;
+import net.minecraft.util.crash.ReportType;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
@@ -92,7 +94,7 @@ public abstract class ProblemScreen extends Screen {
     private void handleLegacyLinkClick(ButtonWidget buttonWidget) {
         try {
             if (uploadedCrashLink == null) {
-                uploadedCrashLink = LegacyCrashLogUpload.upload(report.asString());
+                uploadedCrashLink = LegacyCrashLogUpload.upload(report. asString(ReportType.MINECRAFT_CRASH_REPORT));
             }
             Util.getOperatingSystem().open(uploadedCrashLink);
         } catch (Throwable e) {
@@ -110,7 +112,7 @@ public abstract class ProblemScreen extends Screen {
             if (crashyLink == null) {
                 buttonWidget.active = false;
                 buttonWidget.setMessage(uploadToCrashyLoadingText);
-                CrashyUpload.uploadToCrashy(report.asString()).thenAccept(link -> {
+                CrashyUpload.uploadToCrashy(report.asString(ReportType.MINECRAFT_CRASH_REPORT)).thenAccept(link -> {
                     crashyLink = link;
                     buttonWidget.active = true;
                     buttonWidget.setMessage(uploadToCrashyText);
@@ -140,11 +142,11 @@ public abstract class ProblemScreen extends Screen {
                         .build()
         );
 
-        addDrawableChild(
-                ButtonWidget.builder(uploadToCrashyText,this::handleCrashyUploadClick)
-                        .dimensions(width / 2 - 155 + 160, height / 4 + 120 + 12, 150, 20)
-                        .build()
-        );
+//        addDrawableChild(
+//                ButtonWidget.builder(uploadToCrashyText,this::handleCrashyUploadClick)
+//                        .dimensions(width / 2 - 155 + 160, height / 4 + 120 + 12, 150, 20)
+//                        .build()
+//        );
 
 
         x = width / 2 - 155;
@@ -156,7 +158,7 @@ public abstract class ProblemScreen extends Screen {
     public boolean mouseClicked(double x, double y, int int_1) {
         for (Widget widget : widgets) widget.onClick(x, y);
         if (x >= xLeft && x <= xRight && y >= yTop && y <= yBottom) {
-            File file = report.getFile();
+            Path file = report.getFile();
             if (file != null) {
                 Util.getOperatingSystem().open(file);
             }
@@ -171,7 +173,7 @@ public abstract class ProblemScreen extends Screen {
 
 
     protected void drawFileNameString(DrawContext context, int y) {
-        String fileNameString = report.getFile() != null ? "\u00A7n" + report.getFile().getName()
+        String fileNameString = report.getFile() != null ? "\u00A7n" + report.getFile().getFileName()
                 : NecLocalization.localize("notenoughcrashes.crashscreen.reportSaveFailed");
         int stLen = textRenderer.getWidth(fileNameString);
         xLeft = width / 2 - stLen / 2;

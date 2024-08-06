@@ -93,7 +93,7 @@ public class InGameCatcher {
         report.getSystemDetailsSection().addSection("Integrated Server Crashes Since Restart", () -> String.valueOf(serverCrashCount));
     }
 
-    private static void displayCrashScreen(CrashReport report, int crashCount, boolean clientCrash) {
+    public static void displayCrashScreen(CrashReport report, int crashCount, boolean clientCrash) {
         crashScreenActive = true;
         try {
             if (EntryPointCatcher.crashedDuringStartup()) {

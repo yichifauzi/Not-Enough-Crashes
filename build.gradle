@@ -60,7 +60,7 @@ allprojects {
 task publishAll {
     group = "upload"
     dependsOn("fabric:publishFabric")
-    dependsOn("forge:publishForge")
+//    dependsOn("forge:publishForge")
 }
 
 task addTestFabricMod(type: Copy) {
@@ -70,7 +70,7 @@ task addTestFabricMod(type: Copy) {
 }
 
 task addTestForgeMod(type: Copy) {
-    dependsOn project(":TestForgeMod").tasks.build
+//    dependsOn project(":TestForgeMod").tasks.build
 //   Copy dev jar because there is no support for automatic remapping
     from "TestForgeMod/build/libs/nec_testmod-1.0.0-dev-shadow.jar"
     into "forge/run/mods"

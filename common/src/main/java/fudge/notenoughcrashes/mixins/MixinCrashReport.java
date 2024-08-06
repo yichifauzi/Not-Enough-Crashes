@@ -28,7 +28,7 @@ public abstract class MixinCrashReport {
     /**
      * @reason Adds a list of mods which may have caused the crash to the report.
      */
-    @Inject(method = "addStackTrace", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/SystemDetails;writeTo(Ljava/lang/StringBuilder;)V"))
+    @Inject(method = "addDetails", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/SystemDetails;writeTo(Ljava/lang/StringBuilder;)V"))
     private void beforeSystemDetailsAreWritten(CallbackInfo ci) {
         systemDetailsSection.addSection("Suspected Mods", () -> {
             try {

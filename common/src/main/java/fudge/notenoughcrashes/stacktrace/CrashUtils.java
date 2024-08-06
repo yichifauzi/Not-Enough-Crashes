@@ -5,10 +5,12 @@ import fudge.notenoughcrashes.platform.NecPlatform;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.crash.CrashReport;
+import net.minecraft.util.crash.ReportType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -37,10 +39,10 @@ public final class CrashUtils {
                 reportName += isClient && MinecraftClient.getInstance().isOnThread() ? "-client" : "-server";
                 reportName += ".txt";
 
-                File reportsDir = new File(NecPlatform.instance().getGameDirectory().toFile(), "crash-reports");
-                File reportFile = new File(reportsDir, reportName);
+                Path reportsDir = NecPlatform.instance().getGameDirectory().resolve("crash-reports");
+                Path reportFile = reportsDir.resolve(reportName);
 
-                report.writeToFile(reportFile);
+                report.writeToFile(reportFile, ReportType.MINECRAFT_CRASH_REPORT);
             }
         } catch (Throwable e) {
             NotEnoughCrashes.getLogger().fatal("Failed saving report", e);
@@ -48,6 +50,6 @@ public final class CrashUtils {
 
         NotEnoughCrashes.getLogger().fatal("Minecraft ran into a problem! " + (report.getFile() != null ? "Report saved to: " + report.getFile() :
                 "Crash report could not be saved.") + "\n" +
-                report.asString());
+                report.asString(ReportType.MINECRAFT_CRASH_REPORT));
     }
 }
