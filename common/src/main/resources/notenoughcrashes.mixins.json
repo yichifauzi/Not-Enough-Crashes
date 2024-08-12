@@ -10,7 +10,6 @@
     "MixinTileEntity"
   ],
   "client": [
-    "client.MixinBufferBuilder",
     "client.MixinKeyboard",
     "client.MixinMinecraftClient",
     "client.MixinMinecraftServerClientOnly"

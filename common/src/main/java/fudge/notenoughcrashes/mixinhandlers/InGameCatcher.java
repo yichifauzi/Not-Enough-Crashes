@@ -1,7 +1,6 @@
 package fudge.notenoughcrashes.mixinhandlers;
 
 import fudge.notenoughcrashes.NotEnoughCrashes;
-import fudge.notenoughcrashes.StateManager;
 import fudge.notenoughcrashes.config.NecConfig;
 import fudge.notenoughcrashes.gui.CrashScreen;
 import fudge.notenoughcrashes.patches.MinecraftClientAccess;
@@ -40,7 +39,7 @@ public class InGameCatcher {
 
     private static void resetStates() {
         GlUtil.resetState();
-        StateManager.resetStates();
+//        StateManager.resetStates();
         resetModState();
         resetCriticalGameState();
     }

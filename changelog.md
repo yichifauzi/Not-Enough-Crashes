@@ -1,3 +1,5 @@
+### 4.4.8
+- Removed a fringe feature that was eating away at the computer's memory
 ### 4.4.7
 - Fixed crash in certain cases
 ### 4.4.6
